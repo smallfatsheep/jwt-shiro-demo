@@ -3,10 +3,7 @@ package com.example.jwtshirodemo.config;
 import com.example.jwtshirodemo.jwt.JwtFilter;
 import com.example.jwtshirodemo.shiro.MyRealm;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.mgt.SubjectFactory;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.AnonymousFilter;
-import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,13 +76,13 @@ public class ShiroConfig {
         Map<String, String> filterRuleMap = new LinkedHashMap<>();
         filterRuleMap.put("/login", "anon");
         filterRuleMap.put("/logout", "logout");
+        // “/student” 开头的用户需要角色认证，是“admin”才允许
         filterRuleMap.put("/student*/**", "roles[admin]");
+        // “/teacher” 开头的用户需要权限认证，是“user:create”才允许
         filterRuleMap.put("/teacher*/**", "perms[\"user:create\"]");
         filterRuleMap.put("/**", "jwt");
         // 以“/admin” 开头的用户需要身份认证，authc 表示要进行身份认证
         //filterRuleMap.put("/admin*", "anon");
-        // “/student” 开头的用户需要角色认证，是“admin”才允许
-        // “/teacher” 开头的用户需要权限认证，是“user:create”才允许
         // 设置 shiroFilterFactoryBean 的 FilterChainDefinitionMap
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterRuleMap);
 

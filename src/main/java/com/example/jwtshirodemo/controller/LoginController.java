@@ -3,13 +3,11 @@ package com.example.jwtshirodemo.controller;
 import com.example.jwtshirodemo.dao.UserRepository;
 import com.example.jwtshirodemo.entity.User;
 import com.example.jwtshirodemo.jwt.JwtUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
